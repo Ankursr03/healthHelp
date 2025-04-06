@@ -3,7 +3,7 @@ services:
     name: healthhelp-backend
     env: python
     buildCommand: pip install -r healthHelp/requirements.txt
-    startCommand: cd healthHelp && gunicorn your_project_name.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand: cd healthHelp && gunicorn RapidResponse.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: SECRET_KEY
         generateValue: true
