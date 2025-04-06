@@ -62,6 +62,7 @@ const LoginPage = () => {
           email: email,
           password: password
         }),
+        credentials: 'include', 
       });
 
       const data = await response.json();
