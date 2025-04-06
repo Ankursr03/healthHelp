@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-60t3d=cd#hw#htw=i^ul&-8ftj=%c_^6*#cwpn8*oivee_jmuw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com', 'healthhelp-backend.onrender.com']
 
 
 # Application definition
@@ -109,6 +109,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React Development Server
     "https://healthhelp.onrender.com",
+    "https://healthhelp-backend.onrender.com"
 ]
 
 # If you need to allow credentials (cookies, etc.)
