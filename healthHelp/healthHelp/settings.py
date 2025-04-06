@@ -108,7 +108,7 @@ MIDDLEWARE = [
 # Allow React (Frontend) to Access Django (Backend)         # added
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React Development Server
-    "https://healthhelp.onrender.com/#",
+    "https://healthhelp.onrender.com",
 ]
 
 # If you need to allow credentials (cookies, etc.)
