@@ -123,7 +123,7 @@ const PatientDashboard = ({ goBack }) => {
             return;
           }
 
-          const response = await axios.get('http://localhost:8000/api/nearby-hospitals/', {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/nearby-hospitals/`, {
             params: {
               lat: startLocation.lat,
               lon: startLocation.lng
@@ -165,7 +165,7 @@ const PatientDashboard = ({ goBack }) => {
         alert('Please log in to access your profile.');
         return;
       }
-      axios.get('http://localhost:8000/api/patients/profile/', {
+      axios.get(`${process.env.REACT_APP_API_URL}/api/patients/profile/`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -322,7 +322,7 @@ const PatientDashboard = ({ goBack }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:8000/api/emergency-requests/',
+        `${process.env.REACT_APP_API_URL}/api/emergency-requests/`,
         formData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -407,7 +407,7 @@ const PatientDashboard = ({ goBack }) => {
         const token = localStorage.getItem('token');
         const formData = new FormData();
         formData.append('delete_face_image', 'true');
-        await axios.put('http://localhost:8000/api/patients/profile/', formData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/patients/profile/`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
@@ -454,7 +454,7 @@ const PatientDashboard = ({ goBack }) => {
     if (window.confirm('Are you sure you want to delete this medical history entry?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:8000/api/medical-histories/${id}/`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/medical-histories/${id}/`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -503,7 +503,7 @@ const PatientDashboard = ({ goBack }) => {
       }
     });
 
-    axios.put('http://localhost:8000/api/patients/profile/', formData, {
+    axios.put(`${process.env.REACT_APP_API_URL}/api/patients/profile/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${token}`
@@ -545,7 +545,7 @@ const PatientDashboard = ({ goBack }) => {
         const token = localStorage.getItem('token');
         const formData = new FormData();
         formData.append('delete_insurance_document', 'true');
-        await axios.put('http://localhost:8000/api/patients/profile/', formData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/patients/profile/`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`

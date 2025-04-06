@@ -109,7 +109,7 @@ const HospitalDashboard = () => {
   useEffect(() => {
     const fetchHospitalStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/hospital/status/', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/hospital/status/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -131,7 +131,7 @@ const HospitalDashboard = () => {
     const fetchActiveEmergencies = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/api/emergency-requests/', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/emergency-requests/`, {
           headers: { Authorization: `Bearer ${token}` },
           params: { status: 'created' }
         });
@@ -224,7 +224,7 @@ const HospitalDashboard = () => {
       setLoading(true);
       const newStatus = !onDuty;
       const response = await axios.patch(
-        'http://localhost:8000/api/hospital/status/',
+        `${process.env.REACT_APP_API_URL}/api/hospital/status/`,
         { hospital_active: newStatus },
         {
           headers: {
@@ -294,7 +294,7 @@ const HospitalDashboard = () => {
       const token = localStorage.getItem('token');
       // Fetch existing PatientTreatment for this emergency
       const response = await axios.get(
-        `http://localhost:8000/api/patient-treatments/?emergency_request=${emergency.id}`,
+        `${process.env.REACT_APP_API_URL}/api/patient-treatments/?emergency_request=${emergency.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -462,7 +462,7 @@ const HospitalDashboard = () => {
       const token = localStorage.getItem('token');
       // Check if a treatment already exists
       const checkResponse = await axios.get(
-        `http://localhost:8000/api/patient-treatments/?emergency_request=${selectedEmergency.id}`,
+      `${process.env.REACT_APP_API_URL}/api/patient-treatments/?emergency_request=${selectedEmergency.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -472,7 +472,7 @@ const HospitalDashboard = () => {
         // Update existing treatment
         const existingTreatmentId = checkResponse.data[0].id;
         await axios.patch(
-          `http://localhost:8000/api/patient-treatments/${existingTreatmentId}/`,
+          `${process.env.REACT_APP_API_URL}/api/patient-treatments/${existingTreatmentId}/`,
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -485,7 +485,7 @@ const HospitalDashboard = () => {
         });
       } else {
         // Create new treatment
-        await axios.post('http://localhost:8000/api/patient-treatments/', formData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/patient-treatments/`, formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSnackbar({

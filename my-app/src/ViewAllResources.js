@@ -47,7 +47,7 @@ const ViewAllResources = ({ onGoBack }) => {
     const fetchResources = async () => {
       const token = localStorage.getItem('token'); // Adjust based on your auth setup
       try {
-        const response = await axios.get('http://localhost:8000/api/hospital/resources/', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/hospital/resources/`, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -99,7 +99,7 @@ const ViewAllResources = ({ onGoBack }) => {
       dataToSend[snakeKey] = value;
     });
     try {
-      const response = await axios.put('http://localhost:8000/api/hospital/resources/', dataToSend, {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/hospital/resources/`, dataToSend, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',

@@ -44,7 +44,7 @@ const DriverDashboard = () => {
   useEffect(() => {
     const fetchDriverStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/driver/status/', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/driver/status/`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setOnDuty(response.data.driver_active);
@@ -76,7 +76,7 @@ const DriverDashboard = () => {
       setLoading(true);
       const newStatus = !onDuty;
       await axios.patch(
-        'http://localhost:8000/api/driver/status/',
+        `${process.env.REACT_APP_API_URL}/api/driver/status/`,
         { driver_active: newStatus },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' } }
       );
@@ -102,7 +102,7 @@ const DriverDashboard = () => {
 
     const fetchEmergencies = () => {
       axios
-        .get('http://localhost:8000/api/emergency-requests/', {
+        .get(`${process.env.REACT_APP_API_URL}/api/emergency-requests/`, {
           params: { status: 'created,in_progress' },
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
@@ -142,7 +142,7 @@ const DriverDashboard = () => {
         alert('Please log in to access your profile.');
         return;
       }
-      axios.get('http://localhost:8000/api/drivers/profile/', {
+      axios.get(`${process.env.REACT_APP_API_URL}/api/drivers/profile/`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(response => {
@@ -245,7 +245,7 @@ const DriverDashboard = () => {
         const token = localStorage.getItem('token');
         const formData = new FormData();
         formData.append(`delete_${documentType}`, 'true');
-        await axios.put('http://localhost:8000/api/drivers/profile/', formData, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/drivers/profile/`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`
@@ -287,7 +287,7 @@ const DriverDashboard = () => {
       return;
     }
 
-    axios.put('http://localhost:8000/api/drivers/profile/', formData, {
+    axios.put(`${process.env.REACT_APP_API_URL}/api/drivers/profile/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`

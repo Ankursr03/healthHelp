@@ -67,7 +67,7 @@ class MedicalHistorySerializer(serializers.ModelSerializer):
             if request:
                 return request.build_absolute_uri(obj.document.url)
             # Fallback for development
-            return f"http://localhost:8000{obj.document.url}"
+            return f"https://healthhelp.onrender.com/#/{obj.document.url}"
         return None
 
 
@@ -129,7 +129,7 @@ class PatientSerializer(ModelSerializer):
             if request:
                 return request.build_absolute_uri(obj.face_image.url)
             # Fallback for development (optional)
-            return f"http://localhost:8000{obj.face_image.url}"
+            return f"https://healthhelp.onrender.com/#/{obj.face_image.url}"
         return None
 
     def get_insurance_document_url(self, obj):
@@ -138,7 +138,7 @@ class PatientSerializer(ModelSerializer):
             if request:
                 return request.build_absolute_uri(obj.insurance_document.url)
             # Fallback for development (optional)
-            return f"http://localhost:8000{obj.insurance_document.url}"
+            return f"https://healthhelp.onrender.com/#{obj.insurance_document.url}"
         return None
 
 
