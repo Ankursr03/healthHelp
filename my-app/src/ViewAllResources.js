@@ -104,6 +104,7 @@ const ViewAllResources = ({ onGoBack }) => {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        
       });
       // console.log('Resources updated:', response.data);
       alert('Resources updated successfully');

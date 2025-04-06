@@ -90,7 +90,10 @@ const PoliceDashboard = () => {
     const fetchEmergencies = () => {
       axios
         .get(`${process.env.REACT_APP_API_URL}/api/emergency-requests/`, {
-          params: { status: 'created,in_progress' }
+          params: { status: 'created,in_progress' },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         })
         .then(response => {
           const transformedEmergencies = response.data.map(emergency => ({
