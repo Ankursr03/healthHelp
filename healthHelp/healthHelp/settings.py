@@ -115,7 +115,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 # OR (to allow all origins for development)     # added
-CORS_ALLOW_ALL_ORIGINS = True  
+#CORS_ALLOW_ALL_ORIGINS = True  
 
 
 ROOT_URLCONF = 'healthHelp.urls'
